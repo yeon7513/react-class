@@ -18,6 +18,10 @@ a {
 li {
   list-style: none;
 }
-body {
-  color: #333;
+button {
+  appearance: none;
+  outline: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
 }
