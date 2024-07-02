@@ -1,5 +1,13 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  getFirestore,
+  updateDoc,
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_apiKey,
@@ -10,6 +18,38 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_appId,
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+// create
+async function addDatas(collectionName, dataObj) {
+  try {
+    const collect = await collection(db, collectionName);
+    await addDoc(collect, dataObj);
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
+// read
+async function getDatas(collectionName) {
+  const collect = await collection(db, collectionName);
+  const snapshot = await getDocs(collect);
+  return snapshot;
+}
+
+// update
+async function updateDatas(collectionName, docId, updateInfoObj) {
+  const docRef = await doc(db, collectionName, docId);
+  await updateDoc(docRef, updateInfoObj);
+}
+
+// delete
+async function deleteDatas(collectionName, docId) {
+  const docRef = await doc(db, collectionName, docId);
+  await deleteDoc(docRef);
+}
+
+export { addDatas, db, deleteDatas, getDatas, updateDatas };
