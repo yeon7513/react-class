@@ -3,10 +3,11 @@ import React from 'react';
 function Rsp({ choice, item, isWinner = false }) {
   const selectedChoice = choice || 'rock';
 
+  console.log(isWinner);
   return (
     <div className="rsp-box">
       <div className="rsp-content">
-        <div className={`choice rsp ${isWinner ? 'winner' : ''}`}>
+        <div className={`choice rsp ${isWinner === true ? 'winner' : ''}`}>
           {item[selectedChoice] ? (
             <img src={item[selectedChoice].img} alt={selectedChoice} />
           ) : (

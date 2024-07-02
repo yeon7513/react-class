@@ -1,12 +1,12 @@
 import './App.css';
 
+import { useState } from 'react';
 import rock from './assets/rock.svg';
 import scissor from './assets/scissor.svg';
 import paper from './assets/paper.svg';
 
 import Board from './components/Board';
 import Score from './components/Score';
-import { useEffect, useState } from 'react';
 import Rsp from './components/Rsp';
 
 const choices = {
@@ -29,6 +29,8 @@ function App() {
   const [otherChoice, setOtherChoice] = useState('');
   const [isWinner, setIsWinner] = useState(false);
   const [result, setResult] = useState([]);
+  const [myScore, setMyScore] = useState(0);
+  const [otherScore, setOtherScore] = useState(0);
 
   // 상대의 가위바위보 (랜덤)
   const randomOtherChoice = () => {
@@ -48,9 +50,6 @@ function App() {
   };
 
   const comparisonResults = (my, other) => {
-    console.log('my: ', my);
-    console.log('other: ', other);
-
     if (my === other) {
       setIsWinner(false);
       setResult([...result, '무승부']);
@@ -60,8 +59,10 @@ function App() {
       (my === 'paper' && other === 'rock')
     ) {
       setIsWinner(true);
+      setMyScore(myScore + 1);
       setResult([...result, '승리']);
     } else {
+      setOtherScore(otherScore + 1);
       setIsWinner(false);
       setResult([...result, '패배']);
     }
@@ -77,21 +78,17 @@ function App() {
           </button>
         </div>
         <div className="score-panel">
-          <Score name="나" score={0} />
+          <Score name="나" score={myScore} />
           <div className="division">
             <span></span>
             <span></span>
           </div>
-          <Score name="상대" score={0} />
+          <Score name="상대" score={otherScore} />
         </div>
         <div className="rsp-wrap">
-          <Rsp choice={myChoice} item={choices} isWinner={isWinner === true} />
+          <Rsp choice={myChoice} item={choices} isWinner={isWinner} />
           <span>vs</span>
-          <Rsp
-            choice={otherChoice}
-            item={choices}
-            isWinner={isWinner === false}
-          />
+          <Rsp choice={otherChoice} item={choices} isWinner={isWinner} />
         </div>
         <Board result={result} />
         <div className="my-choice">

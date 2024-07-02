@@ -1,0 +1,20 @@
+button {
+  width: 120px;
+  height: 120px;
+  outline: 0;
+  border: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: url(../assets/purple.svg) no-repeat center / 130%;
+  cursor: pointer;
+}
+button > img {
+  opacity: 0.5;
+  width: 50px;
+}
+button:hover {
+  background-image: url(../assets/yellow.svg);
+}
+button:hover > img {
+  opacity: 1;
+}

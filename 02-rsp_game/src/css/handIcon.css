@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+.hand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  background: url(../assets/yellow.svg) no-repeat 50% / contain;
+}
+
+.hand-icon {
+  width: 70px;
+  height: 70px;
+  user-select: none;
+}
+
+.winner {
+  background-image: url(../assets/yellow-win.svg);
+}

@@ -1,0 +1,118 @@
+@charset "utf-8";
+
+.App {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  min-width: 575px;
+  max-width: 620px;
+  margin: 45px auto;
+  padding: 50px;
+  border-radius: 44px;
+  background-color: #6f00ff;
+  box-shadow: 0 4px 2px #5900cc;
+}
+
+/* 타이틀 */
+.App-heading {
+  margin-bottom: 34px;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.App-reset {
+  position: absolute;
+  top: 44px;
+  right: 44px;
+  cursor: pointer;
+}
+
+/* 점수 출력 */
+.App-scores {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 120px;
+  height: 120px;
+  border-radius: 24px;
+  background-color: #6000db;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.07);
+}
+.App-versus {
+  font-size: 40px;
+  font-weight: 700;
+}
+.score-num {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1;
+  color: #fc0;
+  text-shadow: 0 3px 0 #af8d07;
+}
+.score-name {
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: #9680ff;
+}
+
+/* 가위바위보 내는 곳 */
+.App-hands {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.App-hands > .App-versus {
+  /* font-size: 32px; */
+  text-shadow: 0 3px 0 hsla(0, 0%, 87.5%, 0.5);
+}
+
+/* 배점 */
+.App-bet {
+  font-size: 17px;
+}
+.App-bet > input {
+  margin: 0 8px;
+  padding: 8px;
+  width: 55px;
+  font-size: 17px;
+  outline: 0;
+  border: 2px solid #753cf7;
+  border-radius: 14px;
+  background-color: #6000db;
+  color: #fff;
+}
+
+/* 승부기록 */
+.App-history {
+  margin: 20px 40px 36px;
+  padding: 20px 47px;
+  border-radius: 19px;
+  color: #625f63;
+  background-color: #fff;
+  box-shadow: 0 3px 8px 0 rgba(89, 72, 112, 0.44),
+    0 5px 3px 0 rgba(215, 189, 248, 0.65);
+}
+.App-history > h2 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: #6000db;
+}
+
+/* 가위바위보 버튼 */
+.btn-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
