@@ -1,26 +1,39 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { getDatas } from './firebase';
 
 function App() {
-  async function getTest() {
-    try {
-      const snapshot = await getDatas('test');
-      snapshot.forEach((doc) => {
-        const data = doc.data();
+  const [mbtiInfo, setMbtiInfo] = useState([]);
 
-        console.log(data);
-      });
-    } catch (error) {
-      console.log(error);
-    }
+  async function getMbti() {
+    const snapshot = await getDatas('mbtiColor');
+    const mbtiList = [];
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      mbtiList.push(data);
+    });
+    setMbtiInfo(mbtiList);
   }
 
   useEffect(() => {
-    getTest();
+    console.log(mbtiInfo);
+    getMbti();
   }, []);
 
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <div>
+        {mbtiInfo.map((info, idx) => {
+          return (
+            <div key={idx}>
+              <p>{info.mbti}</p>
+              <span style={{ backgroundColor: info.code }}>{info.code}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 export default App;
