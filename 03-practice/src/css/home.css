@@ -1,0 +1,108 @@
+.container {
+  display: flex;
+  gap: 2.5rem;
+  margin: 5rem auto;
+  width: 100%;
+  max-width: 54.0625rem;
+}
+
+/* 헤더 */
+.header {
+  position: sticky;
+  top: 5rem;
+  padding: 5rem 2.5rem;
+  text-align: right;
+  border-radius: 5rem;
+  background-color: #f5f7fb;
+}
+
+.header > h1 {
+  margin-bottom: 2rem;
+  font-weight: 400;
+  font-size: 2.5rem;
+}
+
+.header > h1 > .accent {
+  font-weight: 800;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+/* 새 컬러 등록 */
+.add-item {
+  display: block;
+  padding: 1.5rem 3rem;
+  border: 0.125rem dashed #dee3ec;
+  border-radius: 0.5rem;
+}
+.add-item:hover {
+  background-color: #f4f7fb;
+}
+
+/* 아이템 */
+.item {
+  display: flex;
+  align-items: center;
+  padding: 1rem 3rem;
+  border-radius: 0.5rem;
+  color: #bfc8da;
+  cursor: pointer;
+}
+
+.item:hover {
+  background-color: #f4f7fb;
+}
+
+.item-id {
+  flex-shrink: 0;
+  margin-right: 2.5rem;
+  width: 4.75rem;
+}
+
+.item-mbti {
+  flex-shrink: 0;
+  width: 4.75rem;
+  margin-right: 1.5rem;
+  padding: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+  background-color: #f0f2f5;
+  color: #464e5e;
+}
+
+.item-arrow {
+  position: relative;
+  width: 100%;
+}
+.item-arrow:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 95.5%;
+  transform: translateY(-50%);
+  border-top: 2px dashed #bfc8da;
+}
+.item-arrow .item-arrow-icon {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+.item-color-chip {
+  flex-shrink: 0;
+  margin: 0 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0.1875rem solid #e8e8e8;
+  border-radius: 0.5rem;
+}
+.item-color-code {
+  flex-shrink: 0;
+  width: 6.5625rem;
+  text-transform: uppercase;
+}

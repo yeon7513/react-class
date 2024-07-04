@@ -1,0 +1,41 @@
+.new-container {
+  width: 416px;
+}
+
+.section {
+  margin: 56px 0;
+}
+
+.section-heading {
+  margin: 24px 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.new-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new-header h1 {
+  font-size: 40px;
+  font-weight: 800;
+}
+
+.cancel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-radius: 50%;
+  background-color: #f4f7fb;
+}
+.cancel:hover {
+  background-color: #edf0f5;
+}
+
+.mbti-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}

@@ -1,37 +1,14 @@
-import { useEffect, useState } from 'react';
-import './App.css';
-import { getDatas } from './firebase';
+import { Route, Routes } from 'react-router-dom';
+import MbtiColors from './components/MbtiColors';
+import NewColor from './components/NewColor';
 
 function App() {
-  const [mbtiInfo, setMbtiInfo] = useState([]);
-
-  async function getMbti() {
-    const snapshot = await getDatas('mbtiColor');
-    const mbtiList = [];
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      mbtiList.push(data);
-    });
-    setMbtiInfo(mbtiList);
-  }
-
-  useEffect(() => {
-    console.log(mbtiInfo);
-    getMbti();
-  }, []);
-
   return (
     <div className="App">
-      <div>
-        {mbtiInfo.map((info, idx) => {
-          return (
-            <div key={idx}>
-              <p>{info.mbti}</p>
-              <span style={{ backgroundColor: info.code }}>{info.code}</span>
-            </div>
-          );
-        })}
-      </div>
+      <Routes>
+        <Route path="/" index element={<MbtiColors />} />
+        <Route path="/newColor" element={<NewColor />} />
+      </Routes>
     </div>
   );
 }
