@@ -24,8 +24,11 @@ const db = getFirestore(app);
 // create
 async function addDatas(collectionName, dataObj) {
   try {
+    dataObj.createdAt = new Date().toLocaleString();
+
     const collect = await collection(db, collectionName);
     await addDoc(collect, dataObj);
+
     return true;
   } catch (error) {
     console.log(error);

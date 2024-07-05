@@ -18,15 +18,14 @@
   padding: 22px 0 18px;
   gap: 10px;
 }
+.list-item-rows .rating-star {
+  cursor: default;
+}
 
 .list-item-title {
   margin-bottom: 4px;
   font-weight: 400;
   font-size: 20px;
-}
-
-.list-item-rating {
-  margin-bottom: 8px;
 }
 
 .list-item-date {

@@ -3,7 +3,7 @@ import './App.css';
 import logo from './assets/logo.png';
 import ReviewForm from './components/ReviewForm';
 import ReviewList from './components/ReviewList';
-import { getDatasByOrderLimit } from './firebase';
+import { addDatas, deleteDatas, getDatasByOrderLimit } from './firebase';
 
 const LIMIT = 5;
 
@@ -52,6 +52,31 @@ function App() {
     handleLoad({ order: order, limit: LIMIT, lq: lq });
   };
 
+  const handleAddSuccess = (data) => {
+    setItems((prevItems) => [data, ...prevItems]);
+    handleLoad({ order: order, limit: LIMIT });
+  };
+
+  const handleDelete = async (docId, imgUrl) => {
+    // 1. 파이어베이스에 접근해서 imgUrl을 사용해 스토리지에 있는 사진 파일 삭제
+    // 2. docId를 사용해 문서 삭제
+    const result = await deleteDatas('movie', docId, imgUrl);
+
+    // db에서 삭제를 성공했을 때만 그 결과를 화면에 반영한다.
+    // 그래서 firebase.js에서 불린값을 return 으로 받아오는 것!!
+    if (!result) {
+      // result에 false일 경우
+      alert('저장된 이미지 파일이 없습니다. \n관리자에게 문의하세요.');
+      return false;
+    }
+
+    // 3. items에서 docId가 같은 요소(객체)를 찾아서 제거
+    // item.docId !== docId
+    // -> 삭제 버튼을 누른 객체를 제외한 나머지만 화면에 반영한다.
+    setItems((prevItems) => prevItems.filter((item) => item.docId !== docId));
+    handleLoad({ order: order, limit: LIMIT });
+  };
+
   useEffect(() => {
     handleLoad({ order: order, limit: LIMIT });
     setHasNext(true);
@@ -63,14 +88,14 @@ function App() {
         <div className="App-nav-container">
           <img src={logo} alt="MOVIEPEDIA" />
           <select>
-            <option value="">한국어</option>
-            <option value="">English</option>
+            <option>한국어</option>
+            <option>English</option>
           </select>
         </div>
       </nav>
       <div className="App-container">
         <div className="App-review-form">
-          <ReviewForm />
+          <ReviewForm addData={addDatas} handleAddSuccess={handleAddSuccess} />
         </div>
         <div className="App-sort">
           <AppSortButton
@@ -87,7 +112,7 @@ function App() {
           </AppSortButton>
         </div>
         <div className="App-review-list">
-          <ReviewList item={items} />
+          <ReviewList item={items} handleDelete={handleDelete} />
           <button
             className="App-load-more-btn"
             onClick={handleMoreClick}
