@@ -12,6 +12,9 @@
   object-fit: cover;
   object-position: center;
 }
+.preview.selected {
+  opacity: 0.48;
+}
 .hidden-overlay {
   position: absolute;
   top: 0;

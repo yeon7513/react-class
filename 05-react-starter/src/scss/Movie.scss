@@ -1,0 +1,60 @@
+@mixin ellipse() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.movie {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) 2fr;
+  gap: 20px;
+  margin-bottom: 70px;
+  padding: 20px;
+  font-weight: 300;
+  border-radius: 5px;
+  color: #adaeb9;
+  background-color: #fff;
+  box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+  .movie-img {
+    position: relative;
+    top: -50px;
+    max-width: 150px;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3),
+      0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+    object-fit: cover;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .movie-title {
+      font-weight: 300;
+      @include ellipse();
+    }
+    .movie-year {
+      font-weight: 300;
+      font-size: 14px;
+    }
+    .movie-genres {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 5px 0;
+      li {
+        font-size: 14px;
+      }
+    }
+    p {
+      @include ellipse();
+      line-clamp: 4;
+      -webkit-line-clamp: 4;
+    }
+  }
+}

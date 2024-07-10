@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1-1. vanilla JS</title>
+  </head>
+  <body>
+    <div>Total Clicks : <span>0</span></div>
+    <button id="btn">Click me</button>
+  </body>
+  <script>
+    let counter = 0;
+    const btn = document.getElementById('btn');
+    const spanEl = document.querySelector('span');
+
+    function handleClick() {
+      counter += 1;
+      spanEl.innerHTML = counter;
+    }
+    btn.addEventListener('click', handleClick);
+  </script>
+</html>

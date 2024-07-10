@@ -181,10 +181,42 @@ async function deleteDatas(collectionName, docId, imgUrl) {
 }
 
 // 데이터 수정
-async function updateDatas(collectionName, docId, updateInfoObj) {
+async function updateDatas(collectionName, updateInfoObj, docId) {
   const docRef = await doc(db, collectionName, docId);
-  // const docData = await getDoc(docRef);
+  // 수정할 데이터 양식 생성 => title, content, rating, updatedAt, imgUrl
+
+  const time = new Date().getTime();
+  updateInfoObj.updatedAt = time;
+
+  // 사진 파일이 수정되면 기존 사진을 삭제 후 새로운 사진을 추가해야한다.
+  // 사진 파일이 수정되면 => 새로운 사진의 url을 받아와 imgUrl 값을 업데이트 한다.
+  if (updateInfoObj.imgUrl !== null) {
+    // 기존 사진 url 가져오기
+    const docSnap = await getDoc(docRef);
+    const prevImgUrl = docSnap.data().imgUrl;
+
+    // 기존 사진 url 삭제
+    const storage = getStorage();
+    const deleteRef = ref(storage, prevImgUrl);
+    await deleteObject(deleteRef);
+
+    // 새로운 사진 url 추가
+    const uuid = crypto.randomUUID();
+    const path = `movie/${uuid}`;
+    const url = await uploadImage(path, updateInfoObj.imgUrl);
+    updateInfoObj.imgUrl = url;
+  } else {
+    // 수정되지 않았을 경우 imgUrl 프로퍼티가 삭제되어야 한다.
+    // 왜? => null이기 때문에 이미지가 제대로 나오지 않는다.
+    delete updateInfoObj['imgUrl'];
+  }
+
+  // 사진 파일이 수정되지 않으면 => 변경 데이터만 업데이트 한다.
   await updateDoc(docRef, updateInfoObj);
+  const updatedData = await getDoc(docRef);
+  const resultData = { docId: updatedData.id, ...updatedData.data() };
+
+  return resultData;
 }
 
 export {

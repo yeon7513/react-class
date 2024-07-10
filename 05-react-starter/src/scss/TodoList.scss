@@ -1,0 +1,31 @@
+$main-color: #eeedeb;
+$sub-color: #e6b9a6;
+$accent-color: #2f3645;
+$hover-color: #939185;
+
+.todo {
+  padding-top: 48px;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid $accent-color;
+  }
+  ul {
+    width: 300px;
+    li {
+      margin-bottom: 5px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      span {
+        font-weight: 700;
+      }
+    }
+  }
+}

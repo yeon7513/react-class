@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import '../css/reivewForm.css';
+import useTranslate from '../hooks/useTranslate';
 import FileInput from './FileInput';
 import RatingInput from './RatingInput';
 
@@ -10,11 +11,16 @@ const INITIAL_VALUE = {
   imgUrl: null,
 };
 
-function ReviewForm({ addData, handleAddSuccess }) {
-  const [values, setValues] = useState(INITIAL_VALUE);
+function ReviewForm({
+  onSubmit,
+  handleSubmitSuccess,
+  initialPreview,
+  initialValues = INITIAL_VALUE,
+  handleCancel,
+}) {
+  const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const inputRef = useRef(null);
-  const textRef = useRef(null);
+  const t = useTranslate();
 
   // 함수를 2개로 나눈 이유
   // -> FileInput과 RatingInput의 값도 받아와야 하기 때문에
@@ -47,29 +53,32 @@ function ReviewForm({ addData, handleAddSuccess }) {
     setIsSubmitting(true);
 
     // form에 작성한 데이터들을 취합해서 컬렉션에 넣는다.
-    const result = await addData('movie', values);
+    const result = await onSubmit('movie', values);
 
     // 데이터를 추가하자마자 화면에 출력
-    handleAddSuccess(result);
+    handleSubmitSuccess(result);
 
     // handleAddSuccess가 끝나면 버튼 활성화
     setIsSubmitting(false);
     setValues(INITIAL_VALUE);
-    inputRef.current.value = '';
-    textRef.current.value = '';
   };
 
   return (
     <form className="review-form" onSubmit={handleSubmit}>
       <div>
-        <FileInput name="imgUrl" setFile={handleChange} value={values.imgUrl} />
+        <FileInput
+          name="imgUrl"
+          setFile={handleChange}
+          value={values.imgUrl}
+          initialPreview={initialPreview}
+        />
       </div>
       <div className="form-container">
         <input
           type="text"
           name="title"
-          ref={inputRef}
-          placeholder="제목을 입력해주세요."
+          placeholder={t('title placeholder')}
+          value={values.title}
           onChange={handleInputChange}
         />
         <RatingInput
@@ -79,13 +88,20 @@ function ReviewForm({ addData, handleAddSuccess }) {
         />
         <textarea
           name="content"
-          ref={textRef}
-          placeholder="내용을 입력해주세요."
+          placeholder={t('content placeholder')}
+          value={values.content}
           onChange={handleInputChange}
         />
-        <button type="submit" disabled={isSubmitting}>
-          확인
-        </button>
+        <div className="form-btns">
+          <button type="submit" disabled={isSubmitting}>
+            {t('confirm button')}
+          </button>
+          {handleCancel && (
+            <button onClick={() => handleCancel(null)}>
+              {t('cancel button')}
+            </button>
+          )}
+        </div>
       </div>
     </form>
   );

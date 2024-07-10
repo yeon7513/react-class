@@ -1,0 +1,82 @@
+@charset "utf-8";
+
+$main-color: #eeedeb;
+$sub-color: #e6b9a6;
+$accent-color: #2f3645;
+$hover-color: #939185;
+
+.App {
+  height: 100%;
+}
+// .App {
+//   display: flex;
+//   gap: 16px;
+//   justify-content: start;
+//   align-items: start;
+//   flex-wrap: wrap;
+//   width: 100%;
+// }
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 0;
+  width: 100%;
+  text-align: center;
+  a {
+    padding: 4px 8px;
+    transition: 0.3s;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
+
+button {
+  appearance: none;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 8px;
+  outline: 0;
+  background-color: $accent-color;
+  color: $main-color;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    background-color: $hover-color;
+  }
+}
+
+input {
+  padding: 8px;
+  border: 1px solid $accent-color;
+  border-radius: 8px;
+  outline: 0;
+  transition: 0.3s;
+  &:focus {
+    border: 1px solid $hover-color;
+    transition: 0.3s;
+    &::placeholder {
+      color: $main-color;
+    }
+  }
+  &::placeholder {
+    color: $sub-color;
+    transition: 0.3s;
+  }
+}
+
+.home {
+  align-items: center;
+  height: calc(100vh - 70px);
+}
+.home-title {
+  font-size: 32px;
+}
+
+.cleanup {
+  padding-top: 48px;
+  text-align: center;
+}

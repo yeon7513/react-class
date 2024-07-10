@@ -3,8 +3,8 @@ import resetImg from '../assets/ic-reset.png';
 import placeholderImg from '../assets/preview-placeholder.png';
 import '../css/fileInput.css';
 
-function FileInput({ name, setFile, value }) {
-  const [preview, setPreview] = useState();
+function FileInput({ name, setFile, value, initialPreview }) {
+  const [preview, setPreview] = useState(initialPreview);
   const inputRef = useRef();
 
   const handleFileChange = (e) => {
@@ -18,7 +18,6 @@ function FileInput({ name, setFile, value }) {
     const inputNode = inputRef;
     inputNode.current.value = '';
     setFile(name, null);
-    // setPreview(null);
   };
 
   useEffect(() => {
@@ -54,7 +53,7 @@ function FileInput({ name, setFile, value }) {
   return (
     <div className="file-input">
       <img
-        className="preview"
+        className={`preview ${preview ? 'selected' : ''}`}
         src={preview || placeholderImg}
         alt="preview images"
       />

@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../css/reviewList.css';
+import useTranslate from '../hooks/useTranslate';
 import Rating from './Rating';
+import ReviewForm from './ReviewForm';
 
 function formatData(value) {
   const date = new Date(value);
   return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
 }
 
-function ReviewListItem({ item, handleDelete }) {
+function ReviewListItem({ item, handleDelete, handleEdit }) {
+  const { id, docId, imgUrl, title, rating, createdAt, content } = item;
+  const t = useTranslate();
+
   const handleDeleteClick = () => {
-    handleDelete(item.docId, item.imgUrl);
+    handleDelete(docId, imgUrl);
   };
 
-  const { imgUrl, title, rating, createdAt, content } = item;
+  const handleEditClick = () => {
+    handleEdit(id);
+  };
 
   return (
     <div className="list-item">
@@ -23,9 +30,11 @@ function ReviewListItem({ item, handleDelete }) {
         <p className="list-item-date">{formatData(createdAt)}</p>
         <p className="list-item-content">{content}</p>
         <div className="list-item-btns">
-          <button className="list-item-edit-btn">수정</button>
+          <button className="list-item-edit-btn" onClick={handleEditClick}>
+            {t('edit button')}
+          </button>
           <button className="list-item-delete-btn" onClick={handleDeleteClick}>
-            삭제
+            {t('delete button')}
           </button>
         </div>
       </div>
@@ -33,14 +42,49 @@ function ReviewListItem({ item, handleDelete }) {
   );
 }
 
-function ReviewList({ item, handleDelete }) {
+function ReviewList({ item, handleDelete, onUpdate, onUpdateSuccess }) {
+  const [editingId, setEditingId] = useState(null);
+
   return (
     <ul className="review-list">
-      {item.map((item) => (
-        <li key={item.id}>
-          <ReviewListItem item={item} handleDelete={handleDelete} />
-        </li>
-      ))}
+      {item.map((item) => {
+        const { title, rating, content, imgUrl, docId } = item;
+        const initialValues = { title, rating, content, imgUrl: null };
+
+        const handleSubmit = (collectionName, dataObj) => {
+          const result = onUpdate(collectionName, dataObj, docId);
+          return result;
+        };
+
+        const handleSubmitSuccess = (result) => {
+          onUpdateSuccess(result);
+          setEditingId(null);
+        };
+
+        if (item.id === editingId) {
+          return (
+            <li key={item.id}>
+              <ReviewForm
+                initialValues={initialValues}
+                initialPreview={imgUrl}
+                handleCancel={setEditingId}
+                onSubmit={handleSubmit}
+                handleSubmitSuccess={handleSubmitSuccess}
+              />
+            </li>
+          );
+        }
+
+        return (
+          <li key={item.id}>
+            <ReviewListItem
+              item={item}
+              handleDelete={handleDelete}
+              handleEdit={setEditingId}
+            />
+          </li>
+        );
+      })}
     </ul>
   );
 }
