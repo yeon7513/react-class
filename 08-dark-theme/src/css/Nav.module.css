@@ -1,0 +1,41 @@
+.nav {
+  position: relative;
+  padding: 15px 0;
+  box-shadow: var(--box-shadow);
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.logo span {
+  margin-right: 2px;
+  padding: 0 3px;
+  font-weight: 700;
+  background-color: #545454;
+  color: #fff;
+}
+
+ul.menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+ul.menu a:hover,
+ul.menu a:active {
+  text-decoration: underline;
+}
+
+ul.menu.dark a,
+ul.menu.dark a:hover,
+ul.menu.dark a:active {
+  color: #d9d9d9;
+}

@@ -3,27 +3,47 @@ import { Link } from 'react-router-dom';
 import ColorInput from '../components/ColorInput';
 import MBTISelect from '../components/MBTISelect';
 import styles from '../css/New.module.css';
+import { addDatas } from '../lib/firebase';
+import generateColorCode from '../lib/generateColorCode';
+
+const INITIAL_VAULES = {
+  mbti: '',
+  colorCode: '',
+};
 
 function New() {
-  const [formValue, setFormValue] = useState({
-    mbti: '',
-    colorCode: '#9441FF',
-  });
+  const [formValue, setFormValue] = useState(INITIAL_VAULES);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (name, value) => {
     setFormValue((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleRandomColor = () => {
-    const colorArr = [];
-    for (let i = 0; i < 3; i++) {
-      colorArr.push(parseInt(Math.random() * 256));
-    }
-    const hex = `#${colorArr
-      .map((code) => code.toString(16).padStart(2, 0))
-      .join('')}`;
+  const handleRandomClick = () => {
+    const nextColorCode = generateColorCode();
+    handleChange('colorCode', nextColorCode);
+  };
 
-    handleChange('colorCode', hex.toUpperCase());
+  const handleSave = async () => {
+    const { mbti, colorCode } = formValue;
+    if (mbti.length < 4) {
+      alert('mbti를 선택해주세요.');
+      return false;
+    }
+    if (colorCode === '') {
+      alert('컬러 코드를 입력해주세요.');
+      return false;
+    }
+
+    setIsSubmitting(true);
+    const result = await addDatas('mbtiColor', formValue);
+    if (result) {
+      alert('MBTI Color 등록을 성공했습니다.');
+      setFormValue(INITIAL_VAULES);
+    } else {
+      alert('MBTI Color 등록을 실패했습니다. \n관리자에게 문의하세요.');
+    }
+    setIsSubmitting(false);
   };
 
   return (
@@ -51,7 +71,7 @@ function New() {
             컬러
             <button
               className={`${styles.btn} ${styles['random-btn']}`}
-              onClick={handleRandomColor}
+              onClick={handleRandomClick}
             >
               <img
                 className={styles['repeat-icon']}
@@ -67,7 +87,11 @@ function New() {
             }
           />
         </section>
-        <button className={`${styles.btn} ${styles['reg-btn']}`}>
+        <button
+          className={`${styles.btn} ${styles['reg-btn']}`}
+          onClick={handleSave}
+          disabled={isSubmitting}
+        >
           컬러 등록
         </button>
       </div>

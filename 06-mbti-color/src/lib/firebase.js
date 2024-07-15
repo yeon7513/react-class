@@ -10,6 +10,7 @@ import {
   limit,
   orderBy,
   query,
+  startAfter,
   updateDoc,
 } from 'firebase/firestore';
 
@@ -25,40 +26,36 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function getAllDatas(collectionName, order) {
+async function getDatas(collectionName, order, lq) {
   // debugger;
   const collect = await collection(db, collectionName);
-  const q = query(collect, orderBy(order, 'desc'));
+  let q = query(collect, orderBy(order, 'desc'), limit(10));
+
+  if (lq) {
+    q = query(collect, orderBy(order, 'desc'), startAfter(lq), limit(10));
+  }
+
   const querySnapshot = await getDocs(q);
+  const lastQuery = querySnapshot.docs[querySnapshot.docs.length - 1];
   const resultData = querySnapshot.docs.map((doc) => ({
     ...doc.data(),
     docId: doc.id,
   }));
 
-  return resultData;
+  return { resultData, lastQuery };
 }
 
 async function addDatas(collectionName, dataObj) {
-  try {
-    const time = new Date().getTime();
-    dataObj.createdAt = time;
-    dataObj.updatedAt = time;
+  const collect = await collection(db, collectionName);
+  const lastId = (await getLastNum(collectionName, 'id')) + 1;
+  const time = new Date().getTime();
 
-    const lastId = await getLastNum(collectionName, 'id');
-    dataObj.id = lastId + 1;
+  dataObj.id = lastId;
+  dataObj.createdAt = time;
+  dataObj.updatedAt = time;
 
-    const collect = await collection(db, collectionName);
-    const result = await addDoc(collect, dataObj);
-
-    const docSnap = await getDoc(result);
-
-    const resultData = { ...docSnap.data(), docId: docSnap.id };
-
-    return resultData;
-  } catch (err) {
-    console.log(err);
-    return false;
-  }
+  const result = await addDoc(collect, dataObj);
+  return result;
 }
 
 async function getLastNum(collectionName, field) {
@@ -69,7 +66,6 @@ async function getLastNum(collectionName, field) {
   );
   const lastDoc = await getDocs(q);
   const lastNum = lastDoc.docs[0].data()[field];
-
   return lastNum;
 }
 
@@ -98,4 +94,4 @@ async function updateDatas(collectionName, updateInfoObj, docId) {
   return resultData;
 }
 
-export { addDatas, deleteDatas, getAllDatas, updateDatas };
+export { addDatas, deleteDatas, getDatas, updateDatas };
