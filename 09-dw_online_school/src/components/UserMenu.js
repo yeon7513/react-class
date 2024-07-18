@@ -6,9 +6,17 @@ import styles from '../css/UserMenu.module.css';
 function UserMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const isLogined = JSON.parse(localStorage.getItem('member'));
+
   const handleClick = (e) => {
     e.stopPropagation();
     setIsOpen(!isOpen);
+  };
+
+  // 로그아웃
+  const handleLogoutClick = () => {
+    localStorage.removeItem('member');
+    alert('로그아웃 되었습니다.');
   };
 
   useEffect(() => {
@@ -34,9 +42,17 @@ function UserMenu() {
             <Link to="/wishlist">위시리스트</Link>
           </li>
           <li className={styles.disabled}>회원가입</li>
-          <li>
-            <Link to="/login">로그인</Link>
-          </li>
+          {!isLogined ? (
+            <li>
+              <Link to="/login">로그인</Link>
+            </li>
+          ) : (
+            <li>
+              <Link to="/" onClick={handleLogoutClick}>
+                로그아웃
+              </Link>
+            </li>
+          )}
         </ul>
       )}
     </div>

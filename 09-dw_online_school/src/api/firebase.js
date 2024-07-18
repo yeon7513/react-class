@@ -1,5 +1,11 @@
 import { initializeApp } from 'firebase/app';
-import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyALde4FL5muDd2cNomJtXLHjrGv9SG-kFc',
@@ -13,6 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// 전체 데이터 불러오기
 async function getDatas(collectionName) {
   const collect = await collection(db, collectionName);
   const snapshot = await getDocs(collect);
@@ -24,4 +31,51 @@ async function getDatas(collectionName) {
   return result;
 }
 
-export { getDatas };
+// 단일 데이터 (조건에 해당하는) 불러오기
+async function getData(collectionName, option) {
+  const { field, condition, value } = option;
+  const collect = await collection(db, collectionName);
+  const q = query(collect, where(field, condition, value));
+  const snapshot = await getDocs(q);
+  // getDocs를 쓰는 이유? => 문서 아이디가 없어서 일치하는 slug로 조회하려고 하기 때문.
+  const resultData = { ...snapshot.docs[0].data(), docId: snapshot.docs[0].id };
+
+  return resultData;
+}
+
+// 회원정보 불러오기
+async function getMember(values) {
+  const { email, password } = values;
+  const collect = await collection(db, 'member');
+  const q = query(collect, where('email', '==', email));
+  const snapshot = await getDocs(q);
+  const docs = snapshot.docs;
+
+  let message;
+  let memberObj = {};
+
+  // ** 이메일과 패스워드 비교
+  if (docs.length === 0) {
+    // 이메일이 일치하지 않을 때
+    message = '이메일이 올바르지 않습니다.';
+  } else {
+    // 이메일은 일치, 패스워드 비교
+    const memberData = { ...docs[0].data(), docId: docs[0].id };
+
+    if (memberData.password === password) {
+      // 이메일, 패스워드 일치
+      message = '로그인에 성공했습니다.';
+      memberObj = {
+        email: memberData.email,
+        docId: memberData.docId,
+      };
+    } else {
+      // 패스워드 불일치
+      message = '비밀번호가 일치하지 않습니다.';
+    }
+  }
+
+  return { memberObj, message };
+}
+
+export { getData, getDatas, getMember };

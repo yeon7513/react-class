@@ -13,7 +13,7 @@ function CourseListPage() {
 
   const handleLoad = async () => {
     const data = await getDatas('courses');
-    // 전체 데이터 변수에 저장
+    // 전체 데이터를 listItems 변수에 저장
     listItems = data;
     setItems(data);
   };
@@ -23,6 +23,7 @@ function CourseListPage() {
     setKeyword(e.target.value);
   };
 
+  // 검색을 통해 키워드와 일치하는 코스들만 출력
   const handleSearch = (e) => {
     e.preventDefault();
     // 전체 데이터를 가지고 있는 listItems를 활용해
@@ -60,7 +61,7 @@ function CourseListPage() {
       <p className={styles.count}>총 {items.length}개 코스</p>
       <div className={styles.courseList}>
         {items.map((course) => {
-          return <CourseItem key={course.docId} courses={course} />;
+          return <CourseItem key={course.docId} course={course} />;
         })}
       </div>
     </ListPage>

@@ -5,7 +5,7 @@ import twitterIcon from '../assets/twitter.svg';
 import styles from '../css/Footer.module.css';
 import Container from './Container';
 
-function Footer(props) {
+function Footer() {
   return (
     <div className={styles.footer}>
       <Container>

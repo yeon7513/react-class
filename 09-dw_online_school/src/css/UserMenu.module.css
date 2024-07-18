@@ -27,7 +27,9 @@ ul.popup {
   z-index: 1;
   width: 130px;
 }
-ul.popup li {
+
+ul.popup li a {
+  display: block;
   padding: 15px 19px;
   font-family: var(--noto-sans);
 }
@@ -35,6 +37,7 @@ ul.popup li:hover {
   background-color: #f4f4f4;
 }
 ul.popup li.disabled {
+  padding: 15px 19px;
   background-color: #fff;
   color: #c4c4c4;
   user-select: none;
