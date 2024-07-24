@@ -13,12 +13,6 @@ function UserMenu() {
     setIsOpen(!isOpen);
   };
 
-  // 로그아웃
-  const handleLogoutClick = () => {
-    localStorage.removeItem('member');
-    alert('로그아웃 되었습니다.');
-  };
-
   useEffect(() => {
     if (!isOpen) return;
 
@@ -48,9 +42,7 @@ function UserMenu() {
             </li>
           ) : (
             <li>
-              <Link to="/" onClick={handleLogoutClick}>
-                로그아웃
-              </Link>
+              <Link to="/logout">로그아웃</Link>
             </li>
           )}
         </ul>

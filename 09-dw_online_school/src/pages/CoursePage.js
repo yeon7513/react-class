@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { getData } from '../api/firebase';
+import { getData, updateDatas } from '../api/firebase';
 import Button from '../components/Button';
 import Card from '../components/Card';
 import Container from '../components/Container';
@@ -48,12 +48,20 @@ function CoursePage() {
     setCourse(resultData);
   };
 
-  const handleAddWishClick = () => {
+  const handleAddWishClick = async () => {
     const member = JSON.parse(localStorage.getItem('member'));
 
     if (member) {
-      // 로그인이 되어있을 때 위시리스트 페이지로 이동
-      navigate('/wishlist');
+      // 로그인이 되어있을 때 코스 담기를 누르면 위시리스트 페이지로 이동
+      const result = await updateDatas('member', member.docId, course, {
+        type: 'ADD',
+        fieldName: 'courseList',
+      });
+      if (result) {
+        navigate('/wishlist');
+      } else {
+        alert('코스 담기를 실패했습니다. \n관리자에게 문의하세요.');
+      }
     } else {
       // 로그인이 안되어있을 때 로그인 페이지로 이동
       alert('로그인을 해주세요.');

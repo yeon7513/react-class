@@ -1,0 +1,30 @@
+.header {
+  padding: 16px 0;
+  background-color: #fff;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.header .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  padding: 24px 0;
+  font-size: 12px;
+  background-color: #56ca5a;
+  color: #fff;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer .content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

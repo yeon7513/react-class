@@ -1,8 +1,9 @@
 .nav {
   position: relative;
+  z-index: 5;
   padding: 15px 0;
   box-shadow: var(--box-shadow);
-  background-color: white;
+  background-color: #fff;
 }
 .container {
   display: flex;

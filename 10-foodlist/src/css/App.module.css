@@ -1,0 +1,95 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.App > .container {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 70px 0;
+}
+
+.sort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 48px;
+}
+
+.search {
+  position: relative;
+}
+
+.searchBar {
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+}
+
+.searchBtn {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+}
+
+.searchBtn > img {
+  display: block;
+}
+
+.sortBtns {
+  display: flex;
+  gap: 10px;
+}
+.sortBtns > button {
+  padding: 5px 0 5px 15px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: none;
+}
+
+.sortBtns > button.active {
+  position: relative;
+  color: #4caf50;
+}
+.sortBtns > button.active::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  width: 5px;
+  height: 5px;
+  background-color: #4caf50;
+  transform: translateY(-50%);
+}
+
+.moreBtn {
+  padding: 16px 0;
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+.moreBtn > img {
+  margin-right: 5px;
+  transition: 0.3s;
+}
+
+.moreBtn:hover {
+  background-color: #f0f0f0;
+}
+.moreBtn:hover > img {
+  opacity: 0.8;
+}
+
+.loading {
+  padding: 20px 0;
+  text-align: center;
+}
+.loading p {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 500;
+}

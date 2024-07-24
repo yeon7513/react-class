@@ -1,0 +1,14 @@
+.answerInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.answerInfo .date {
+  flex: 1;
+  align-self: flex-end;
+  font-weight: 12px;
+  font-weight: 500;
+  color: #c4c4c4;
+}
