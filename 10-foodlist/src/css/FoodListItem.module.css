@@ -36,6 +36,18 @@
   flex: 1;
 }
 
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.info span {
+  opacity: 0.3;
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .btns {
   display: flex;
   justify-content: right;

@@ -4,8 +4,13 @@ import useTranslate from '../hooks/useTranslate';
 import ImageBox from './ImageBox';
 
 function FoodListItem({ food, handleDelete, handleEdit }) {
-  const { calorie, content, imgUrl, title, docId, id } = food;
+  const { calorie, content, imgUrl, title, docId, id, createdAt } = food;
   const t = useTranslate();
+
+  function formatDate(value) {
+    const date = new Date(value);
+    return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`;
+  }
 
   const handleDeleteClick = () => {
     handleDelete(docId, imgUrl);
@@ -24,9 +29,12 @@ function FoodListItem({ food, handleDelete, handleEdit }) {
           <span className={styles.calorie}>{calorie}kcal</span>
         </h1>
         <p className={styles.content}>{content}</p>
-        <div className={styles.btns}>
-          <button onClick={handleEditClick}>{t('edit button')}</button>
-          <button onClick={handleDeleteClick}>{t('delete button')}</button>
+        <div className={styles.info}>
+          <span>{formatDate(createdAt)}</span>
+          <div className={styles.btns}>
+            <button onClick={handleEditClick}>{t('edit button')}</button>
+            <button onClick={handleDeleteClick}>{t('delete button')}</button>
+          </div>
         </div>
       </div>
     </li>

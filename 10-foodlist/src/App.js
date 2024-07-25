@@ -159,14 +159,16 @@ function App() {
           handleDelete={handleDelete}
           onUpdateSuccess={handleUpdateSuccess}
         />
-        <button
-          className={styles.moreBtn}
-          onClick={handleMoreClick}
-          disabled={!hasNext}
-        >
-          <img src={moreIcon} alt="" />
-          {t('load more')}
-        </button>
+        {hasNext && (
+          <button
+            className={styles.moreBtn}
+            onClick={handleMoreClick}
+            disabled={!hasNext}
+          >
+            <img src={moreIcon} alt="" />
+            {t('load more')}
+          </button>
+        )}
       </Container>
       <Footer />
     </div>
