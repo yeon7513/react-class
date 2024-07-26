@@ -33,6 +33,15 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+function getCollection(collectionName) {
+  return collection(db, collectionName);
+}
+
+function createPath(path) {
+  const uuid = crypto.randomUUID();
+  return path + uuid;
+}
+
 async function getAllDatas(collectionName) {
   const collect = collection(db, collectionName);
   const snapshot = await getDocs(collect);
@@ -45,25 +54,28 @@ async function getAllDatas(collectionName) {
 }
 
 async function getDatasByOrderLimit(collectionName, options) {
-  const collect = collection(db, collectionName);
-
   let q;
 
   if (options.lq) {
     q = query(
-      collect,
+      getCollection(collectionName),
       orderBy(options.order, 'desc'),
       startAfter(options.lq),
       limit(options.limit)
     );
   } else {
-    q = query(collect, orderBy(options.order, 'desc'), limit(options.limit));
+    q = query(
+      getCollection(collectionName),
+      orderBy(options.order, 'desc'),
+      limit(options.limit)
+    );
   }
 
   const snapshot = await getDocs(q);
-  const lastQuery = snapshot.docs[snapshot.docs.length - 1];
+  const docs = snapshot.docs;
+  const lastQuery = docs[docs.length - 1];
 
-  const resultData = snapshot.docs.map((doc) => ({
+  const resultData = docs.map((doc) => ({
     docId: doc.id,
     ...doc.data(),
   }));
@@ -72,23 +84,22 @@ async function getDatasByOrderLimit(collectionName, options) {
 }
 
 // 이미지 업로드
-async function uploadImg(imgFile) {
-  const uuid = crypto.randomUUID();
-  const path = `foods/${uuid}`;
-
+async function uploadImg(path, imgFile) {
   const storage = getStorage();
+  const imageRef = ref(storage, path);
 
-  const imgRef = ref(storage, path);
-  await uploadBytes(imgRef, imgFile);
-  const url = await getDownloadURL(imgRef);
+  // File 객체를 스토리지에 저장
+  await uploadBytes(imageRef, imgFile);
 
+  // 저장한 File의 url을 받는다.
+  const url = await getDownloadURL(imageRef);
   return url;
 }
 
 // 가장 마지막 아이디 추출
 async function getLastId(collectionName, field) {
   const q = query(
-    collection(db, collectionName),
+    getCollection(collectionName),
     orderBy(field, 'desc'),
     limit(1)
   );
@@ -100,51 +111,40 @@ async function getLastId(collectionName, field) {
 
 // 데이터 추가
 async function addDatas(collectionName, dataObj) {
-  try {
-    const url = await uploadImg(dataObj.imgUrl);
+  const path = createPath('foods/');
+  const url = await uploadImg(path, dataObj.imgUrl);
+  dataObj.imgUrl = url;
 
-    dataObj.imgUrl = url;
+  const lastId = (await getLastId(collectionName, 'id')) + 1;
+  dataObj.id = lastId;
 
-    const time = new Date().getTime();
-    dataObj.createdAt = time;
-    dataObj.updatedAt = time;
+  const time = new Date().getTime();
+  dataObj.createdAt = time;
+  dataObj.updatedAt = time;
 
-    const lastId = await getLastId(collectionName, 'id');
-    dataObj.id = lastId + 1;
+  const result = await addDoc(getCollection(collectionName), dataObj);
+  const docSnap = await getDoc(result);
+  const resultData = { ...docSnap.data(), docId: docSnap.id };
 
-    const collect = await collection(db, collectionName);
-    const result = await addDoc(collect, dataObj);
-
-    const docSnap = await getDoc(result);
-
-    const resultData = { ...docSnap.data(), docId: docSnap.id };
-
-    return resultData;
-  } catch (err) {
-    console.log(err);
-    return false;
-  }
+  return resultData;
 }
 
 // 데이터 수정
-async function updateDatas(collectionName, updateObj, docId) {
+async function updateDatas(collectionName, updateObj, docId, imgUrl) {
   const docRef = await doc(db, collectionName, docId);
 
   const time = new Date().getTime();
   updateObj.updatedAt = time;
 
-  if (updateObj.imgUrl !== null) {
-    const docSnap = await getDoc(docRef);
-    const prevImg = docSnap.data().imgUrl;
-
+  if (updateObj.imgUrl === null) {
+    delete updateObj['imgUrl'];
+  } else {
     const storage = getStorage();
-    const deleteRef = ref(storage, prevImg);
+    const deleteRef = ref(storage, imgUrl);
     await deleteObject(deleteRef);
 
-    const url = await uploadImg(updateObj.imgUrl);
+    const url = await uploadImg(createPath('foods/'), updateObj.imgUrl);
     updateObj.imgUrl = url;
-  } else {
-    delete updateObj['imgUrl'];
   }
 
   await updateDoc(docRef, updateObj);

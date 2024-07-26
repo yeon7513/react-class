@@ -13,7 +13,7 @@ function FoodList({ foods, onUpdate, handleDelete, onUpdateSuccess }) {
         const initialValues = { title, content, imgUrl: null, calorie };
 
         const handleSubmit = (collectionName, dataObj) => {
-          const result = onUpdate(collectionName, dataObj, docId);
+          const result = onUpdate(collectionName, dataObj, docId, imgUrl);
           return result;
         };
 
