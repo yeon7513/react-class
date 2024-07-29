@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-class/static/css/main.7bd9a719.css",
-    "main.js": "/react-class/static/js/main.1d895444.js",
+    "main.js": "/react-class/static/js/main.7bf6644a.js",
     "static/media/landing.svg": "/react-class/static/media/landing.4bbaee518e8f08af70e2809738254418.svg",
     "static/media/icon--computer-architecture.svg": "/react-class/static/media/icon--computer-architecture.122c82b1c31a3f5fd811.svg",
     "static/media/icon--deep-learning.svg": "/react-class/static/media/icon--deep-learning.cb97e7d5d8acba83cca8.svg",
@@ -35,10 +35,10 @@
     "static/media/search.svg": "/react-class/static/media/search.8a36d7a29fe56e8c01df6f2931510f85.svg",
     "static/media/facebook.svg": "/react-class/static/media/facebook.923e8d46d8ec99ef010f0699048cd7a4.svg",
     "main.7bd9a719.css.map": "/react-class/static/css/main.7bd9a719.css.map",
-    "main.1d895444.js.map": "/react-class/static/js/main.1d895444.js.map"
+    "main.7bf6644a.js.map": "/react-class/static/js/main.7bf6644a.js.map"
   },
   "entrypoints": [
     "static/css/main.7bd9a719.css",
-    "static/js/main.1d895444.js"
+    "static/js/main.7bf6644a.js"
   ]
 }
