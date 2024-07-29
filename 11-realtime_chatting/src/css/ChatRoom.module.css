@@ -1,0 +1,45 @@
+.main {
+  overflow-y: auto;
+  flex: 1;
+  padding: 10px;
+}
+
+.main::-webkit-scrollbar {
+  width: 8px;
+}
+.main::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background-color: rgba(59, 59, 59, 0.5);
+}
+
+.main > div {
+  height: 1000%;
+}
+.form {
+  flex: none;
+  display: flex;
+  width: 100%;
+  max-width: 450px;
+  height: 10vh;
+  min-height: 50px;
+  font-size: 1.5rem;
+  background-color: #ffec42;
+}
+
+.form textarea {
+  padding: 16px;
+  width: 100%;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #262626;
+}
+
+.form button {
+  flex: none;
+  width: 10vh;
+  font-size: 24px;
+  background-color: #ffec42;
+}
+.form button > svg {
+  vertical-align: middle;
+}

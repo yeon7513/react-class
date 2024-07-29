@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+/* common font-family */
+@import url('https://webfontworld.github.io/NexonLv1Gothic/NexonLv1Gothic.css');
+
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'NexonLv1Gothic', sans-serif;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+li {
+  list-style: none;
+}
+body {
+  background-color: #282c34;
+  color: #333;
+}
+
+textarea {
+  border: 0;
+  outline: 0;
+  resize: none;
+}
+
+button {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 450px;
+  height: 100vh;
+  text-align: center;
+}
+
+.App header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  width: 100%;
+  max-width: 450px;
+  height: 10vh;
+  min-height: 50px;
+  background-color: #a9bdce;
+  color: rgb(59, 59, 59);
+}
+.App header > h4 {
+  font-weight: 400;
+}
+.App header > button {
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background-color: #fff;
+}
+.App section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #b2c7d9;
+}
