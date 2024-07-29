@@ -14,6 +14,7 @@ import FoodForm from './components/FoodForm';
 import FoodList from './components/FoodList';
 import SortButton from './components/SortButton';
 import styles from './css/App.module.css';
+import useAsync from './hooks/useAsync';
 import useTranslate from './hooks/useTranslate';
 import Footer from './layout/Footer';
 import Header from './layout/Header';
@@ -27,7 +28,9 @@ function App() {
   const [lq, setLq] = useState();
   const [allDatas, setAllDatas] = useState([]);
   const [keyword, setKeyword] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, loadingError, getDatasAsync] =
+    useAsync(getDatasByOrderLimit);
   const t = useTranslate();
 
   const handleLoadAllDatas = async () => {
@@ -36,12 +39,7 @@ function App() {
   };
 
   const handleLoad = async (options) => {
-    setIsLoading(true);
-
-    const { resultData, lastQuery } = await getDatasByOrderLimit(
-      'foods',
-      options
-    );
+    const { resultData, lastQuery } = await getDatasAsync('foods', options);
 
     if (!options.lq) {
       setFoods(resultData);
@@ -53,7 +51,6 @@ function App() {
       setHasNext(false);
     }
     setLq(lastQuery);
-    setIsLoading(false);
   };
 
   const handleKeywordChange = (e) => {
@@ -163,7 +160,7 @@ function App() {
           <button
             className={styles.moreBtn}
             onClick={handleMoreClick}
-            disabled={!hasNext}
+            disabled={isLoading}
           >
             <img src={moreIcon} alt="" />
             {t('load more')}

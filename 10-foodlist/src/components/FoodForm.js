@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../css/FoodForm.module.css';
+import useAsync from '../hooks/useAsync';
 import useTranslate from '../hooks/useTranslate';
 import FileInput from './FileInput';
 import TextInput from './TextInput';
@@ -31,7 +32,8 @@ function FoodForm({
   handleSubmitSuccess,
 }) {
   const [values, setValues] = useState(initialValues);
-  const [isSubmit, setIsSubmit] = useState(false);
+  // const [isSubmit, setIsSubmit] = useState(false);
+  const [isSubmit, submitError, submit] = useAsync(onSubmit);
   const t = useTranslate();
 
   const handleChange = (name, value) => {
@@ -50,12 +52,10 @@ function FoodForm({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmit(true);
 
-    const result = await onSubmit('foods', values);
+    const result = await submit('foods', values);
     handleSubmitSuccess(result);
 
-    setIsSubmit(false);
     setValues(INITIAL_VALUES);
   };
 
