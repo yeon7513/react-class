@@ -1,10 +1,21 @@
 .signIn {
+  margin: 50px auto 0;
   padding: 16px 24px;
-  background-color: #fff;
+  max-width: 400px;
   font-size: 16px;
+  border-radius: 24px;
+  background-color: #fff;
+}
+.signIn > * {
+  vertical-align: middle;
+}
+.signIn > svg {
+  margin-right: 5px;
+  font-size: 20px;
 }
 
 .notice {
   display: block;
   margin-top: 16px;
+  color: #72808b;
 }

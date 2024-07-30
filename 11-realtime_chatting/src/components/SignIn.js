@@ -3,7 +3,7 @@ import React from 'react';
 import * as FcIcons from 'react-icons/fc';
 import styles from '../css/SignIn.module.css';
 
-function SignIn({ auth, login }) {
+function SignIn({ auth }) {
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     const loginResult = await signInWithPopup(auth, provider);
