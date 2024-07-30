@@ -1,44 +1,13 @@
 {
   "files": {
-    "main.css": "/react-class/static/css/main.7bd9a719.css",
-    "main.js": "/react-class/static/js/main.7bf6644a.js",
-    "static/media/landing.svg": "/react-class/static/media/landing.4bbaee518e8f08af70e2809738254418.svg",
-    "static/media/icon--computer-architecture.svg": "/react-class/static/media/icon--computer-architecture.122c82b1c31a3f5fd811.svg",
-    "static/media/icon--deep-learning.svg": "/react-class/static/media/icon--deep-learning.cb97e7d5d8acba83cca8.svg",
-    "static/media/icon--fourth-revolution.svg": "/react-class/static/media/icon--fourth-revolution.ccbfaa51ebb536fbbac6.svg",
-    "static/media/icon--java.svg": "/react-class/static/media/icon--java.5cdaadf3ce34aa76aba8.svg",
-    "static/media/icon--automation.svg": "/react-class/static/media/icon--automation.4525458bc5366d13ec0e.svg",
-    "static/media/icon--data-science.svg": "/react-class/static/media/icon--data-science.f2a8b06488e1206e359a.svg",
-    "static/media/icon--algorithm.svg": "/react-class/static/media/icon--algorithm.8b42da3f6db5b04676ce.svg",
-    "static/media/icon--ds.svg": "/react-class/static/media/icon--ds.b5992261377b4af2c84d.svg",
-    "static/media/icon--machine-learning.svg": "/react-class/static/media/icon--machine-learning.4bff262f4e34de5d33a7.svg",
-    "static/media/icon--jquery.svg": "/react-class/static/media/icon--jquery.40a135ffbcd3cb3d0922.svg",
-    "static/media/icon--web-publishing.svg": "/react-class/static/media/icon--web-publishing.45b8351015b1238c18e7.svg",
-    "static/media/icon--django.svg": "/react-class/static/media/icon--django.f58e1c9c0bc116f94b75.svg",
-    "static/media/icon--intro-to-computer.svg": "/react-class/static/media/icon--intro-to-computer.e2d907476f2cde0913a0.svg",
-    "static/media/icon--python.svg": "/react-class/static/media/icon--python.4920d9f11e1e4a537032.svg",
-    "static/media/icon--react.svg": "/react-class/static/media/icon--react.5236c3b2b5cbb2bae96c.svg",
-    "static/media/icon--sql.svg": "/react-class/static/media/icon--sql.d3590f6f6fb6babc8994.svg",
-    "static/media/icon--js.svg": "/react-class/static/media/icon--js.11a859ab4606c0258d4f.svg",
-    "static/media/icon--unix.svg": "/react-class/static/media/icon--unix.efa4e3018426668b2211.svg",
-    "static/media/icon--git.svg": "/react-class/static/media/icon--git.8c3c72cb6ef7608e9543.svg",
-    "static/media/icon--oop.svg": "/react-class/static/media/icon--oop.214903bf94e25fa06845.svg",
-    "static/media/icon--default.svg": "/react-class/static/media/icon--default.2998435305dd7f5187b1.svg",
-    "static/media/instagram.svg": "/react-class/static/media/instagram.4dc1c57fd7b50b16b6b17ec00cad51db.svg",
-    "static/media/community.svg": "/react-class/static/media/community.96be6e43d9d48b8ac5007f90750800e4.svg",
-    "static/media/closeButton.svg": "/react-class/static/media/closeButton.32d8719bd1238128120c305b84044d27.svg",
-    "static/media/catalog.svg": "/react-class/static/media/catalog.56e5533b3daa154171c3d91bed255f46.svg",
-    "static/media/icon--node-js.svg": "/react-class/static/media/icon--node-js.537133c7f2eb0805327b.svg",
+    "main.css": "/react-class/static/css/main.253fccd6.css",
+    "main.js": "/react-class/static/js/main.a4c6fd22.js",
     "index.html": "/react-class/index.html",
-    "static/media/twitter.svg": "/react-class/static/media/twitter.a783e4156d71e748e518140888767c02.svg",
-    "static/media/warn.svg": "/react-class/static/media/warn.71fb9b7feae9cafaeff3d46bbd9ded9e.svg",
-    "static/media/search.svg": "/react-class/static/media/search.8a36d7a29fe56e8c01df6f2931510f85.svg",
-    "static/media/facebook.svg": "/react-class/static/media/facebook.923e8d46d8ec99ef010f0699048cd7a4.svg",
-    "main.7bd9a719.css.map": "/react-class/static/css/main.7bd9a719.css.map",
-    "main.7bf6644a.js.map": "/react-class/static/js/main.7bf6644a.js.map"
+    "main.253fccd6.css.map": "/react-class/static/css/main.253fccd6.css.map",
+    "main.a4c6fd22.js.map": "/react-class/static/js/main.a4c6fd22.js.map"
   },
   "entrypoints": [
-    "static/css/main.7bd9a719.css",
-    "static/js/main.7bf6644a.js"
+    "static/css/main.253fccd6.css",
+    "static/js/main.a4c6fd22.js"
   ]
 }
