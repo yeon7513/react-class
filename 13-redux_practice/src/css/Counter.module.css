@@ -1,0 +1,11 @@
+.counter {
+  margin: 20px;
+  padding: 40px;
+  width: 200px;
+  border: 2px solid skyblue;
+}
+
+.counter button {
+  margin-right: 5px;
+  padding: 8px;
+}

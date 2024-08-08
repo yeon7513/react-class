@@ -1,0 +1,110 @@
+@charset "utf-8";
+
+/* common font-family */
+@import url('https://webfontworld.github.io/score/SCoreDream.css');
+@import url('https://webfontworld.github.io/Poppins/Poppins.css');
+
+:root {
+  --main-color: #717482;
+  --second-color: #767a89;
+  --en-font: 'Poppins', sans-serif;
+}
+
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'SCoreDream', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  height: 100%;
+  color: #333;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--en-font);
+}
+
+button {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+input {
+  appearance: none;
+  border: 0;
+  outline: 0;
+}
+
+// 각 페이지 컴포넌트를 위한 wrapper
+.page {
+  flex: 1 1 auto;
+  margin-top: 100px;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 80px;
+  }
+}
+
+// page 안에 있는 wrapper
+.container {
+  margin: 0 auto;
+  padding: 5px;
+  max-width: 1200px;
+
+  @media screen and (min-width: 576px) {
+    padding: 15px;
+  }
+  @media screen and (min-width: 990px) {
+    padding: 5px;
+  }
+}
+
+// login, register page
+.form-contaier {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 80px auto;
+  padding: 10px;
+  width: 90%;
+  height: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  a {
+    color: var(--main-color);
+    transition: 0.3s all ease;
+    &:hover {
+      color: var(--second-color);
+    }
+  }
+
+  @media screen and (min-width: 576px) {
+    width: 70%;
+  }
+  @media screen and (min-width: 768px) {
+    width: 60%;
+  }
+  @media screen and (min-width: 990px) {
+    width: 30%;
+  }
+}

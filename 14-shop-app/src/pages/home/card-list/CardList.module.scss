@@ -1,0 +1,33 @@
+.cardList {
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // flex-wrap: wrap;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 0 auto 60px;
+  width: 60%;
+
+  // @media screen and (min-width: 667px) {
+  //   align-items: start;
+  // }
+  // @media screen and (min-width: 785px) {
+  //   justify-content: start;
+  // }
+
+  @media screen and (min-width: 667px) {
+    grid-template-columns: repeat(2, 1fr);
+
+    width: 90%;
+  }
+  @media screen and (min-width: 798px) {
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+  }
+  @media screen and (min-width: 1015px) {
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+  }
+}

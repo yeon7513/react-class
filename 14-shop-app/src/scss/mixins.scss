@@ -1,0 +1,32 @@
+@mixin flexCenter() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin alignCenter() {
+  display: flex;
+  align-items: center;
+}
+
+@mixin hoverEffect($hoverColor: #4c3bcf) {
+  transition: 0.3s all ease;
+  &:hover {
+    color: $hoverColor;
+  }
+}
+
+@mixin btnStyle(
+  $borderColor: var(--second-color),
+  $bgColor: var(--second-color),
+  $textColor: #fff
+) {
+  background-color: #fff;
+  border: 1px solid $borderColor;
+  border-radius: 4px;
+  transition: 0.3s all linear;
+  &:hover {
+    color: $textColor;
+    background-color: $bgColor;
+  }
+}

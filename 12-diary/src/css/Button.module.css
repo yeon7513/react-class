@@ -1,0 +1,24 @@
+.btn {
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.default {
+  background-color: #ececec;
+  color: #333;
+}
+.positive {
+  background-color: #64c964;
+  color: #fff;
+}
+.negative {
+  background-color: #fd565f;
+  color: #fff;
+}
+
+.loginBtn {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+}

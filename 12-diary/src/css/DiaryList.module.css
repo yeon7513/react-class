@@ -1,0 +1,29 @@
+.diaryList .menuWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 20px 0 30px;
+}
+
+.controlMenus {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.newBtn {
+  flex: 1;
+}
+
+.newBtn button {
+  width: 100%;
+}
+
+.controlMenu {
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+  cursor: pointer;
+}

@@ -1,0 +1,31 @@
+.localeSelect {
+  position: relative;
+}
+
+.openBtn {
+  padding: 5px 10px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+}
+.openBtn:hover {
+  background-color: #4caf50;
+}
+.selectLangs {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+}
+.selectLangs li {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.selectLangs li:hover {
+  background-color: #f0f0f0;
+}

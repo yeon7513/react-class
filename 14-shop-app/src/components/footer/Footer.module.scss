@@ -1,0 +1,19 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  background-color: #f1eadc;
+}
+
+.contacts {
+  font-size: 25px;
+
+  a {
+    display: flex;
+    align-items: center;
+    &:hover {
+      text-decoration: underline;
+      color: #000;
+    }
+  }
+}

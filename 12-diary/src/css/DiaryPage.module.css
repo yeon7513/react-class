@@ -1,0 +1,70 @@
+.diaryPage article {
+  display: flex;
+  flex-direction: column;
+}
+
+.diaryPage article section {
+  margin: 30px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.diaryPage article h4 {
+  margin-bottom: 24px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.emotion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  width: 250px;
+  height: 250px;
+  border-radius: 5px;
+  background-color: #ececec;
+}
+
+.img1 {
+  background-color: #64c964;
+}
+.img2 {
+  background-color: #9dd772;
+}
+.img3 {
+  background-color: #fdce17;
+}
+.img4 {
+  background-color: #fd8446;
+}
+.img5 {
+  background-color: #fd565f;
+}
+
+.description {
+  font-size: 24px;
+  color: #fff;
+}
+
+.content {
+  padding: 40px 20px;
+  width: 100%;
+  border-radius: 5px;
+  background-color: #ececec;
+  word-break: keep-all;
+}
+.content p {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}

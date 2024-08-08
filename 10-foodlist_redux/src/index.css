@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+/* common font-family */
+@import url('https://webfontworld.github.io/SCoreDream/SCoreDream.css');
+
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'SCoreDream', sans-serif;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s;
+}
+li {
+  list-style: none;
+}
+body {
+  color: #333;
+  background: url(./assets/background.png);
+  background-color: #f9f9f9;
+}
+
+/* common */
+:root {
+  --box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.05);
+}
+
+button {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  transition: 0.3s;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: default;
+  opacity: 0.48;
+}
+
+input,
+textarea {
+  appearance: none;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #f9f9f9;
+  background-color: #f9f9f9;
+  outline: 0;
+  font-size: 16px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+textarea {
+  resize: none;
+}
+
+input:focus,
+textarea:focus {
+  border: 1px solid #d1d1d1;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #bdbdbd;
+}

@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nanum Pen Script', sans-serif;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+li {
+  list-style: none;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  min-height: 100vh;
+  background-color: #f6f6f6;
+}
+
+#root {
+  background-color: #fff;
+  box-shadow: 0 7px 29px 0 rgba(100, 100, 111, 0.2);
+}
+
+button {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  appearance: none;
+  border: 0;
+  outline: 0;
+}
+
+textarea {
+  resize: none;
+}

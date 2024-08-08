@@ -1,0 +1,13 @@
+.count {
+  padding: 24px 0 16px;
+  text-align: left;
+  p {
+    font-family: var(--en-font);
+    font-size: 17px;
+    font-weight: 300;
+    color: #808080;
+    span {
+      font-weight: 500;
+    }
+  }
+}

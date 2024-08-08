@@ -1,0 +1,57 @@
+.diaryItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.imgWrapper {
+  display: flex;
+  justify-content: center;
+  min-width: 120px;
+  height: 80px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.imgWrapper img {
+  width: 50%;
+}
+
+.img1 {
+  background-color: #64c964;
+}
+.img2 {
+  background-color: #9dd772;
+}
+.img3 {
+  background-color: #fdce17;
+}
+.img4 {
+  background-color: #fd8446;
+}
+.img5 {
+  background-color: #fd565f;
+}
+
+.infoWrapper {
+  flex-grow: 1;
+  cursor: pointer;
+}
+
+.date {
+  margin-bottom: 5px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.preview {
+  font-size: 18px;
+}
+
+.btnWrapper {
+  min-width: 82px;
+}
+.btnWrapper button {
+  width: 100%;
+}

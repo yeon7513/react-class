@@ -1,0 +1,39 @@
+.diaryEditor section {
+  margin-bottom: 40px;
+}
+
+.diaryEditor h4 {
+  margin: 20px 0;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.diaryEditor textarea {
+  padding: 20px;
+  width: 100%;
+  min-height: 200px;
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: #ececec;
+  resize: vertical;
+}
+
+.date {
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: #ececec;
+  cursor: pointer;
+}
+
+.emotionWrapper {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 2%;
+}
+
+.controlBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

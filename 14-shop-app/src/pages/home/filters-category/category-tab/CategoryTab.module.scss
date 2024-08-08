@@ -1,0 +1,18 @@
+@import '/src/scss/mixins.scss';
+
+.btn {
+  padding: 10px 40px;
+  font-size: 15px;
+  font-weight: 400;
+  @include btnStyle();
+
+  @media screen and (min-width: 992px) {
+    padding: 19px 65px;
+    font-size: 17px;
+  }
+}
+
+.active {
+  color: #fff;
+  background-color: var(--second-color);
+}
