@@ -3,7 +3,6 @@ import { getDatas } from '../../api/firebase';
 
 const initialState = {
   products: [],
-  category: '',
   isLoading: false,
   error: null,
 };

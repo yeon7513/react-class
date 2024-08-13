@@ -9,7 +9,7 @@ function HomePage() {
       <div className="container">
         <h2>Products</h2>
         <FiltersCategory />
-        <CountProducts count={0} />
+        <CountProducts />
         <CardList />
       </div>
     </div>

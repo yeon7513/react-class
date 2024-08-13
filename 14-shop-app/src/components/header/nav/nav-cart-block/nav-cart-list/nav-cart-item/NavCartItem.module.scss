@@ -1,0 +1,53 @@
+.item {
+  display: flex;
+  gap: 15px;
+  padding: 20px 10px;
+  border-bottom: 1px solid #eee;
+  &:last-child {
+    border-bottom: 0;
+  }
+  a {
+    height: 100px;
+    img {
+      width: 80px;
+      max-width: 100px;
+      height: 100px;
+      object-fit: contain;
+    }
+  }
+}
+
+.desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  flex: 1;
+  h3 {
+    font-size: 15px;
+    font-weight: 400;
+    font-family: var(--main-font);
+    color: rgb(206, 202, 202);
+  }
+  h2 {
+    font-size: 15px;
+    font-family: var(--main-font);
+  }
+  span {
+    font-size: 15px;
+  }
+}
+
+.delete {
+  align-self: flex-start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  color: rgba(31, 30, 30, 0.36);
+  transition: 0.3s ease-out;
+
+  &:hover {
+    color: #333;
+  }
+}

@@ -31,7 +31,7 @@
     width: 100%;
 
     > button {
-      padding: 10px 35px;
+      padding: 10px 22px;
       @include btnStyle(var(--main-color), var(--main-color));
       &:disabled {
         color: #fff;

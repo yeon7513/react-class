@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 60px;
+
+  @media screen and (min-width: 667px) {
+    align-items: flex-start;
+  }
+  @media screen and (min-width: 785px) {
+    justify-content: flex-start;
+  }
+}
+
+.card {
+  width: 80%;
+
+  @media screen and (max-width: 480px) {
+    width: 50%;
+  }
+  @media screen and (max-width: 667px) {
+    width: 40%;
+  }
+  @media screen and (max-width: 798px) {
+    width: 30%;
+  }
+  @media screen and (max-width: 1015px) {
+    width: 24%;
+  }
+}

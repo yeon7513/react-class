@@ -1,0 +1,29 @@
+.block {
+}
+
+.price {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+
+  p {
+    margin: 20px 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+  }
+}
+
+.link {
+  text-align: center;
+  transition: 0.3s;
+  a {
+    display: block;
+    padding: 22px 26px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  &:hover {
+    color: #ddd;
+  }
+}
