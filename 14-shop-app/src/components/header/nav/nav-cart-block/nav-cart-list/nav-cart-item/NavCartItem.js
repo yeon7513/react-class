@@ -9,7 +9,7 @@ import {
 import styles from './NavCartItem.module.scss';
 
 function NavCartItem({ product }) {
-  const { id, image, category, title, price, quantity, total } = product;
+  const { id, image, category, title, price, quantity, total, docId } = product;
   const { uid, isAuthenticated } = useSelector((state) => state.userSlice);
   const dispatch = useDispatch();
 
@@ -17,7 +17,7 @@ function NavCartItem({ product }) {
     if (isAuthenticated) {
       dispatch(
         deleteCartItem({
-          collectionName: ['users', uid, 'cart'],
+          collectionName: `/users/${uid}/cart/${id}`,
           productId: id,
         })
       );
@@ -28,7 +28,7 @@ function NavCartItem({ product }) {
 
   return (
     <div className={styles.item}>
-      <Link to={`/product/${id}`}>
+      <Link to={`/product/${docId}`}>
         <img src={image} alt="" />
       </Link>
       <div className={styles.desc}>

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getData } from '../../api/firebase';
+import { getDataRest } from '../../api';
 
 const initialState = {
   product: {},
@@ -29,9 +29,9 @@ const productSlice = createSlice({
 
 const fetchProduct = createAsyncThunk(
   'product/fetchProduct',
-  async ({ collectionName, queryOptions }) => {
+  async ({ collectionName }) => {
     try {
-      const resultData = await getData(collectionName, queryOptions);
+      const resultData = await getDataRest(collectionName);
       return resultData;
     } catch (error) {
       return 'FETCH Error: ' + error;

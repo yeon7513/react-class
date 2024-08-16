@@ -5,7 +5,7 @@ import { addCartItem, addToCart } from '../../../../store/cart/cartSlice';
 import styles from './CardItem.module.scss';
 
 function CardItem({ product }) {
-  const { title, image, price, id } = product;
+  const { title, image, price, id, docId } = product;
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.cartSlice);
   const { uid, isAuthenticated } = useSelector((state) => state.userSlice);
@@ -15,7 +15,7 @@ function CardItem({ product }) {
     if (isAuthenticated) {
       dispatch(
         addCartItem({
-          collectionName: ['users', uid, 'cart'],
+          collectionName: `/users/${uid}/cart/${id}`,
           product: product,
         })
       );
@@ -26,7 +26,7 @@ function CardItem({ product }) {
 
   return (
     <li className={styles.item}>
-      <Link to={`product/${id}`}>
+      <Link to={`product/${docId}`}>
         <img className={styles.thumb} src={image} alt="" />
       </Link>
       <h5>{title.length > 15 ? `${title.slice(0, 15)}...` : title}</h5>

@@ -1,28 +1,34 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { addToCart } from '../../store/cart/cartSlice';
+import { addCartItem, addToCart } from '../../store/cart/cartSlice';
 import { fetchProduct } from '../../store/products/productSilce';
 import styles from './DetailPage.module.scss';
 
 function DetailPage() {
   const { id } = useParams();
-  const productId = Number(id);
   const dispatch = useDispatch();
   const { product, isLoading } = useSelector((state) => state.productSlice);
   const { products } = useSelector((state) => state.cartSlice);
-  const productMatching = products.some((product) => product.id === productId);
+  const productMatching = products.some((cartItem) => cartItem.docId === id);
+  const { uid, isAuthenticated } = useSelector((state) => state.userSlice);
 
   const addItemToCart = () => {
-    dispatch(addToCart(product));
+    if (isAuthenticated) {
+      dispatch(
+        addCartItem({
+          collectionName: `/users/${uid}/cart/${id}`,
+          product: product,
+        })
+      );
+    } else {
+      dispatch(addToCart(product));
+    }
   };
 
   useEffect(() => {
-    const queryOptions = {
-      conditions: [{ field: 'id', operator: '==', value: productId }],
-    };
-    dispatch(fetchProduct({ collectionName: 'products', queryOptions }));
-  }, [productId, dispatch]);
+    dispatch(fetchProduct({ collectionName: `/products/${id}` }));
+  }, [id, dispatch]);
 
   return (
     <div className="page">

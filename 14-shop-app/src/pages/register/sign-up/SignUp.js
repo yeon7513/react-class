@@ -2,7 +2,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { asyncCart, getUserAuth, joinUser } from '../../../api/firebase';
+import { getUserAuth, joinUser, syncCart } from '../../../api/firebase';
 import Form from '../../../components/form/Form';
 import { setUser } from '../../../store/user/userSlice';
 
@@ -29,7 +29,7 @@ function SignUp() {
       await joinUser(user.uid, user.email);
 
       // 장바구니 아이템 등록
-      await asyncCart(user.uid, cartItems);
+      await syncCart(user.uid, cartItems);
 
       dispatch(
         setUser({ email: user.email, token: user.refreshToken, uid: user.uid })

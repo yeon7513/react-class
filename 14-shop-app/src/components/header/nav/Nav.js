@@ -41,7 +41,7 @@ function Nav() {
         </li>
         <li>
           <div>
-            <Link to="/">
+            <Link to="/order">
               <FiUser />
             </Link>
           </div>

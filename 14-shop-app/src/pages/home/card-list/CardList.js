@@ -10,23 +10,37 @@ function CardList() {
   const category = useSelector((state) => state.categoriesSlice);
   const dispatch = useDispatch();
 
+  // const handleLoad = async () => {
+  //   const queryOptions = {
+  //     conditions: [
+  //       {
+  //         field: 'category',
+  //         operator: category ? 'EQUAL' : 'GREATER_THAN_OR_EQUAL',
+  //         value: category,
+  //       },
+  //     ],
+  //   };
+  //   await getDatasRest('products', queryOptions);
+  // };
+
   useEffect(() => {
     const queryOptions = {
       conditions: [
         {
           field: 'category',
-          operator: category ? '==' : '>=',
+          operator: category ? 'EQUAL' : 'GREATER_THAN_OR_EQUAL',
           value: category,
         },
       ],
       orders: [
         {
-          field: 'id',
-          direction: 'asc',
+          orderField: 'id',
+          direction: 'ASCENDING',
         },
       ],
     };
     dispatch(fetchProducts({ collectionName: 'products', queryOptions }));
+    // handleLoad();
   }, [category, dispatch]);
 
   if (isLoading) return <CardSkeleton />;
