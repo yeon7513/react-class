@@ -13,13 +13,13 @@ function OrderItem({ image, category, title, price, quantity, total, id }) {
         <h3>{title}</h3>
       </div>
       <div className={styles.order_price}>
-        <h4>가격: </h4>
+        <h4 className="ko-title">가격: </h4>
         <span>
           $ {price} x {quantity}
         </span>
       </div>
       <div className={styles.order_total}>
-        <h4>합계: </h4>
+        <h4 className="ko-title">합계: </h4>
         <span>$ {total}</span>
       </div>
     </li>

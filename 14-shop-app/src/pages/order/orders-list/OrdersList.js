@@ -29,8 +29,8 @@ function OrdersList() {
       {order.map((order, idx) => (
         <div key={idx}>
           <div className={styles.order_header}>
-            <h3>주문 번호_{order.createdAt}</h3>
-            <h3>
+            <h3 className="ko-title">주문 번호_{order.createdAt}</h3>
+            <h3 className="ko-title">
               주문 날짜_{getISODate(order.createdAt).yyyyMMdd}{' '}
               {getISODate(order.createdAt).hhmmss}
             </h3>

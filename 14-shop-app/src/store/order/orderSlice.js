@@ -32,6 +32,7 @@ export const fetchOrder = createAsyncThunk(
   async ({ collectionName, queryOptions }, thunkAPI) => {
     try {
       const resultData = await getDatas(collectionName, queryOptions);
+      // const resultData = await getDataRest(collectionName, queryOptions);
       return resultData;
     } catch (error) {
       console.error(error);

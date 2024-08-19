@@ -86,19 +86,23 @@ export async function deleteDatasRest(url) {
 
 export async function deleteDatasRestBatch(url, dataArr) {
   try {
-    const requests = dataArr.map((item) => {
-      return {
-        writes: {
-          delete: `projects/mbti-project-495d0/databases/(default)/documents/${url}/${item.id}`,
-        },
-      };
-    });
+    for (const item of dataArr) {
+      const response = await api.delete(`${url}/${item.id}`);
+    }
 
-    const response = await api.post(
-      ':batchWrite',
-      { requests },
-      { params: { key: API_KEY } }
-    );
+    // const requests = dataArr.map((item) => {
+    //   return {
+    //     writes: {
+    //       delete: `projects/mbti-project-495d0/databases/(default)/documents/${url}/${item.id}`,
+    //     },
+    //   };
+    // });
+
+    // const response = await api.post(
+    //   ':batchWrite',
+    //   { requests },
+    //   { params: { key: API_KEY } }
+    // );
 
     return true;
   } catch (error) {
